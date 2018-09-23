@@ -5,7 +5,7 @@ namespace GradeBook.GradeBooks
 {
     public class RankedGradeBook : BaseGradeBook
     {
-        public RankedGradeBook (string name) : base (name)
+        public RankedGradeBook (string name, bool isweighted) : base (name,isweighted)
         {
             Type=GradeBookType.Ranked;        
         }
@@ -14,9 +14,9 @@ namespace GradeBook.GradeBooks
         {
         if (Students.Count<5){
             throw new InvalidOperationException();
-        } 
-           
-           var thershold = (int)Math.Ceiling(Students.Count * 0.2);
+        }
+
+            var thershold = (int)Math.Ceiling(Students.Count * 0.2);
            var grades = Students.OrderByDescending (e =>e.AverageGrade).Select (e =>e.AverageGrade).ToList();
            if (grades[thershold -1]<= averageGrade)
            return 'A';
